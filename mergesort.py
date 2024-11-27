@@ -1,52 +1,44 @@
+
 def merge_sort(arr):
     if len(arr) > 1:
-        mid = len(arr) // 2  # Finding the mid of the array
-        L = arr[:mid]  # Dividing the elements into 2 halves
-        R = arr[mid:]
+        # Find the middle of the array
+        mid = len(arr) // 2
 
-        merge_sort(L)  # Sorting the first half
-        merge_sort(R)  # Sorting the second half
+        # Divide the array into left and right halves
+        left_half = arr[:mid]
+        right_half = arr[mid:]
 
+        # Recursively sort both halves
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        # Merge the sorted halves
         i = j = k = 0
-        print(len(L))
-        print(len(R))
 
-        # Copy data to temporary arrays L[] and R[]
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                arr[k] = L[i]
+        # Compare elements from both halves and merge
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
                 i += 1
             else:
-                arr[k] = R[j]
+                arr[k] = right_half[j]
                 j += 1
             k += 1
 
-        # Checking if any element was left
-        while i < len(L):
-            arr[k] = L[i]
+        # Copy any remaining elements from left_half
+        while i < len(left_half):
+            arr[k] = left_half[i]
             i += 1
             k += 1
 
-        while j < len(R):
-            arr[k] = R[j]
+        # Copy any remaining elements from right_half
+        while j < len(right_half):
+            arr[k] = right_half[j]
             j += 1
             k += 1
 
-arr = [12, 11, 13, 5, 6, 7]
-merge_sort(arr)
-print("Sorted array:", arr)
-
-# [12,11,13] [5,6,7]
-
-# L: [12] [11,13]
-# R: [5] [6,7]
-
-# ----------------------------------
-# L = 12, [11,13] 
-# if(arr[i] <  arr[j]){
-#    arr[i] = arr[j] 
-# }
-# L = 
-
-
-
+# Example usage
+data = [38, 27, 43, 3, 9, 82, 10]
+print("Original array:", data)
+merge_sort(data)
+print("Sorted array:", data)
