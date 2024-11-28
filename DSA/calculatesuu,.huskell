@@ -1,0 +1,11 @@
+sumOfSquaresOfEvens :: [Int] -> Int
+sumOfSquaresOfEvens xs = sum . map (^2) . filter even $ xs
+
+-- Main function to test the functionality
+main :: IO ()
+main = do
+    -- Example list of numbers
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
+    -- Calculate and print the sum of squares of even numbers
+    print $ sumOfSquaresOfEvens numbers
